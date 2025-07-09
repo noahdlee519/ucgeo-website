@@ -239,7 +239,7 @@ p {
 }
 
 .erg-link:hover {
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 /* Contact and Media Links */
@@ -252,7 +252,7 @@ p {
 }
 
 .contact-link:hover, .media-link:hover {
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 /* Image Carousel Styling */
