@@ -631,7 +631,7 @@ a[style*="color: rgb(38, 168, 255)"]:hover {
     
     .hero-subtext p {
         font-size: 16px;
-        margin-left: 0 !important;
+        margin-left: -20px !important;
     }
     
     .carousel-slide img {
@@ -722,7 +722,7 @@ a[style*="color: rgb(38, 168, 255)"]:hover {
     
     .hero-subtext p {
         font-size: 14px;
-        margin-left: 0 !important;
+        margin-left: -20px !important;
     }
     
     .carousel-slide img {
