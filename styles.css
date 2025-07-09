@@ -139,12 +139,14 @@ p {
     text-decoration: underline;
     text-decoration-thickness: 5px;
     text-underline-offset: 8px;
+    text-decoration-color: rgb(38, 168, 255);
 }
 
 .nav-link.active {
     text-decoration: underline;
     text-decoration-thickness: 5px;
     text-underline-offset: 8px;
+    text-decoration-color: rgb(38, 168, 255);
 }
 
 /* Logo in top right */
