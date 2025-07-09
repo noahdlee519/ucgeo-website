@@ -555,6 +555,15 @@ p {
     opacity: 0.8;
 }
 
+/* Hover effect for co-president emails and Google Maps link */
+a[style*="color: rgb(38, 168, 255)"] {
+    transition: opacity 0.3s ease;
+}
+
+a[style*="color: rgb(38, 168, 255)"]:hover {
+    opacity: 0.8 !important;
+}
+
 /* Footer */
 .footer {
     padding: 40px 0;
