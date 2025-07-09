@@ -45,6 +45,7 @@ h2 {
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 20px;
+    color: rgb(38, 255, 99);
 }
 
 h3 {
@@ -92,7 +93,7 @@ p {
     margin-bottom: 30px;
     margin-top: 0;
     margin-left: -20px;
-    background: linear-gradient(180deg, rgb(38, 255, 99), rgb(38, 168, 255));
+    background: linear-gradient(90deg, rgb(38, 255, 99), rgb(38, 168, 255));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
