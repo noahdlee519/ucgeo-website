@@ -118,10 +118,7 @@ p {
 }
 
 .nav-link {
-    background: linear-gradient(180deg, rgb(38, 255, 99), rgb(38, 168, 255));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: rgb(38, 255, 99);
     text-decoration: none;
     font-weight: 600;
     font-size: clamp(60px, 8vw, 60px);
@@ -139,14 +136,14 @@ p {
     text-decoration: underline;
     text-decoration-thickness: 5px;
     text-underline-offset: 8px;
-    text-decoration-color: rgb(38, 168, 255);
+    text-decoration-color: rgb(38, 255, 99);
 }
 
 .nav-link.active {
     text-decoration: underline;
     text-decoration-thickness: 5px;
     text-underline-offset: 8px;
-    text-decoration-color: rgb(38, 168, 255);
+    text-decoration-color: rgb(38, 255, 99);
 }
 
 /* Logo in top right */
