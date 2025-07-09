@@ -170,4 +170,74 @@ function showSlide(n) {
 // Auto-advance carousel disabled
 // document.addEventListener('DOMContentLoaded', function() {
 //     setInterval(nextSlide, 5000);
-// }); 
+// });
+
+// Mobile double-tap functionality for community partner links
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if device is mobile
+    function isMobile() {
+        return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    
+    // Handle double-tap for partner links on mobile
+    const partnerLinks = document.querySelectorAll('.partner-link');
+    let tappedLink = null;
+    let tapTimeout = null;
+    
+    partnerLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (isMobile()) {
+                e.preventDefault();
+                
+                // If this is the same link that was just tapped
+                if (tappedLink === this) {
+                    // Second tap - follow the link
+                    clearTimeout(tapTimeout);
+                    window.open(this.href, '_blank');
+                    tappedLink = null;
+                } else {
+                    // First tap - show hover state and remember this link
+                    tappedLink = this;
+                    
+                    // Remove active class from all partner items
+                    document.querySelectorAll('.partner-item').forEach(item => {
+                        item.classList.remove('mobile-active');
+                    });
+                    
+                    // Add active class to this partner item
+                    const partnerItem = this.querySelector('.partner-item');
+                    if (partnerItem) {
+                        partnerItem.classList.add('mobile-active');
+                    }
+                    
+                    // Clear previous timeout
+                    if (tapTimeout) {
+                        clearTimeout(tapTimeout);
+                    }
+                    
+                    // Reset after 2 seconds if no second tap
+                    tapTimeout = setTimeout(() => {
+                        tappedLink = null;
+                        if (partnerItem) {
+                            partnerItem.classList.remove('mobile-active');
+                        }
+                    }, 2000);
+                }
+            }
+        });
+    });
+    
+    // Reset tapped link when clicking elsewhere
+    document.addEventListener('click', function(e) {
+        if (isMobile() && !e.target.closest('.partner-link')) {
+            tappedLink = null;
+            if (tapTimeout) {
+                clearTimeout(tapTimeout);
+            }
+            // Remove active class from all partner items
+            document.querySelectorAll('.partner-item').forEach(item => {
+                item.classList.remove('mobile-active');
+            });
+        }
+    });
+}); 
