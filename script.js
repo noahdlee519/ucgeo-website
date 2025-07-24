@@ -136,13 +136,13 @@ let slideIndex = 1;
 
 function nextSlide() {
     slideIndex++;
-    if (slideIndex > 12) { slideIndex = 1; }
+    if (slideIndex > 11) { slideIndex = 1; }
     showSlide(slideIndex);
 }
 
 function previousSlide() {
     slideIndex--;
-    if (slideIndex < 1) { slideIndex = 12; }
+    if (slideIndex < 1) { slideIndex = 11; }
     showSlide(slideIndex);
 }
 
@@ -167,77 +167,88 @@ function showSlide(n) {
     }
 }
 
+// Touch/Swipe functionality for carousel
+document.addEventListener('DOMContentLoaded', function() {
+    const carouselContainer = document.querySelector('.carousel-container');
+    let startX = 0;
+    let startY = 0;
+    let endX = 0;
+    let endY = 0;
+    let isScrolling = null;
+    
+    if (carouselContainer) {
+        carouselContainer.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isScrolling = null;
+        }, { passive: true });
+        
+        carouselContainer.addEventListener('touchmove', function(e) {
+            // Only handle horizontal swipes, allow vertical scrolling
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            
+            if (isScrolling === null) {
+                isScrolling = Math.abs(currentX - startX) < Math.abs(currentY - startY);
+            }
+            
+            // If it's a horizontal swipe, prevent default
+            if (!isScrolling) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        carouselContainer.addEventListener('touchend', function(e) {
+            endX = e.changedTouches[0].clientX;
+            endY = e.changedTouches[0].clientY;
+            
+            // Only handle horizontal swipes
+            if (!isScrolling) {
+                handleSwipe();
+            }
+        }, { passive: true });
+    }
+    
+    function handleSwipe() {
+        const threshold = 25; // Minimum distance for a swipe (reduced for better sensitivity)
+        const deltaX = endX - startX;
+        const deltaY = endY - startY;
+        
+        // Check if it's a horizontal swipe with sufficient distance
+        if (Math.abs(deltaX) > threshold && Math.abs(deltaX) > Math.abs(deltaY)) {
+            if (deltaX > 0) {
+                // Swipe right - go to previous slide
+                previousSlide();
+            } else {
+                // Swipe left - go to next slide
+                nextSlide();
+            }
+        }
+    }
+});
+
 // Auto-advance carousel disabled
 // document.addEventListener('DOMContentLoaded', function() {
 //     setInterval(nextSlide, 5000);
 // });
 
-// Mobile double-tap functionality for community partner links
+// Mobile single-tap functionality for community partner links
 document.addEventListener('DOMContentLoaded', function() {
     // Check if device is mobile
     function isMobile() {
         return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
     
-    // Handle double-tap for partner links on mobile
+    // Handle single-tap for partner links on mobile
     const partnerLinks = document.querySelectorAll('.partner-link');
-    let tappedLink = null;
-    let tapTimeout = null;
     
     partnerLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             if (isMobile()) {
+                // On mobile, directly open the link (no double-tap needed)
+                window.open(this.href, '_blank');
                 e.preventDefault();
-                
-                // If this is the same link that was just tapped
-                if (tappedLink === this) {
-                    // Second tap - follow the link
-                    clearTimeout(tapTimeout);
-                    window.open(this.href, '_blank');
-                    tappedLink = null;
-                } else {
-                    // First tap - show hover state and remember this link
-                    tappedLink = this;
-                    
-                    // Remove active class from all partner items
-                    document.querySelectorAll('.partner-item').forEach(item => {
-                        item.classList.remove('mobile-active');
-                    });
-                    
-                    // Add active class to this partner item
-                    const partnerItem = this.querySelector('.partner-item');
-                    if (partnerItem) {
-                        partnerItem.classList.add('mobile-active');
-                    }
-                    
-                    // Clear previous timeout
-                    if (tapTimeout) {
-                        clearTimeout(tapTimeout);
-                    }
-                    
-                    // Reset after 2 seconds if no second tap
-                    tapTimeout = setTimeout(() => {
-                        tappedLink = null;
-                        if (partnerItem) {
-                            partnerItem.classList.remove('mobile-active');
-                        }
-                    }, 2000);
-                }
             }
         });
-    });
-    
-    // Reset tapped link when clicking elsewhere
-    document.addEventListener('click', function(e) {
-        if (isMobile() && !e.target.closest('.partner-link')) {
-            tappedLink = null;
-            if (tapTimeout) {
-                clearTimeout(tapTimeout);
-            }
-            // Remove active class from all partner items
-            document.querySelectorAll('.partner-item').forEach(item => {
-                item.classList.remove('mobile-active');
-            });
-        }
     });
 }); 

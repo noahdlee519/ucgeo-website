@@ -11,11 +11,11 @@
 /* Root Variables */
 :root {
     --primary-font: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --primary-color: rgb(38, 168, 255);
+    --primary-color: #70e000;
     --background-color: #ffffff;
-    --text-color: rgb(38, 168, 255);
+    --text-color: #26a8ff;
     --light-gray: #f8f8f8;
-    --medium-gray: rgba(38, 168, 255);
+    --medium-gray: #26a8ff;
     --section-spacing: 60px;
     --container-max-width: 1200px;
 }
@@ -45,7 +45,7 @@ h2 {
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 20px;
-    color: rgb(38, 255, 99);
+    color: #70e000;
 }
 
 h3 {
@@ -93,7 +93,7 @@ p {
     margin-bottom: 30px;
     margin-top: 0;
     margin-left: -20px;
-    background: linear-gradient(90deg, rgb(38, 255, 99), rgb(38, 168, 255));
+    background: linear-gradient(90deg, #70e000, #53D0A3, #26a8ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -119,7 +119,7 @@ p {
 }
 
 .nav-link {
-    color: rgb(38, 255, 99);
+    color: #70e000;
     text-decoration: none;
     font-weight: 600;
     font-size: clamp(60px, 8vw, 60px);
@@ -137,14 +137,14 @@ p {
     text-decoration: underline;
     text-decoration-thickness: 5px;
     text-underline-offset: 8px;
-    text-decoration-color: rgb(38, 255, 99);
+    text-decoration-color: #70e000;
 }
 
 .nav-link.active {
     text-decoration: underline;
     text-decoration-thickness: 5px;
     text-underline-offset: 8px;
-    text-decoration-color: rgb(38, 255, 99);
+    text-decoration-color: #70e000;
 }
 
 /* Logo in top right */
@@ -190,7 +190,7 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 140, 0, 0.15);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(255, 174, 0, 0.05));
     z-index: 1;
     pointer-events: none;
 }
@@ -260,10 +260,8 @@ p {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    background-color: var(--background-color);
-    border-radius: 8px;
+    background-color: #ffffff;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .carousel {
@@ -276,7 +274,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--light-gray);
+    background-color: #ffffff;
 }
 
 .carousel-slide img {
@@ -307,7 +305,7 @@ p {
 }
 
 .carousel-btn:hover {
-    background-color: rgb(38, 168, 255);
+    background-color: var(--medium-gray);
 }
 
 .carousel-dots {
@@ -393,9 +391,11 @@ p {
     flex-direction: column;
     align-items: center;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 0px;
     background-color: var(--light-gray);
     transition: transform 0.2s ease;
+    text-decoration: none;
+    color: inherit;
 }
 
 .consulate-item:hover {
@@ -417,6 +417,34 @@ p {
 .about-content {
     max-width: 800px;
     margin: 0 auto;
+}
+
+/* Community Section */
+.community-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Partner Logo Styling - Smooth Responsive Scaling */
+.partner-logo {
+    height: auto;
+    transition: transform 0.2s ease;
+}
+
+.partner-logo:hover {
+    transform: scale(1.15);
+}
+
+.csds-logo {
+    width: clamp(22%, 25%, 28%);
+}
+
+.mansueto-logo, .blueprint-logo {
+    width: clamp(30%, 38%, 45%);
+}
+
+.tobler-logo {
+    width: clamp(12%, 15%, 20%);
 }
 
 .mission-statement {
@@ -556,11 +584,11 @@ p {
 }
 
 /* Hover effect for co-president emails and Google Maps link */
-a[style*="color: rgb(38, 168, 255)"] {
+a[style*="color: #48cae4"] {
     transition: opacity 0.3s ease;
 }
 
-a[style*="color: rgb(38, 168, 255)"]:hover {
+a[style*="color: #48cae4"]:hover {
     opacity: 0.8 !important;
 }
 
@@ -675,10 +703,6 @@ a[style*="color: rgb(38, 168, 255)"]:hover {
         gap: 40px;
     }
     
-    /* Make community icons bigger on tablet screens */
-    .partner-logo {
-        min-width: 28% !important;
-    }
 }
 
 @media (max-width: 480px) {
@@ -697,7 +721,7 @@ a[style*="color: rgb(38, 168, 255)"]:hover {
     }
     
     .nav-link {
-        font-size: clamp(32px, 15vw, 60px);
+        font-size: clamp(30px, 15vw, 58px);
     }
     
     .site-title {
@@ -716,13 +740,69 @@ a[style*="color: rgb(38, 168, 255)"]:hover {
     }
     
     .hero-subtext {
-        padding: 0 15px 0 20px;
+        padding: 0 15px;
         margin-left: 0;
+        text-align: center;
     }
     
     .hero-subtext p {
         font-size: 14px;
-        margin-left: -20px !important;
+        margin-left: 0 !important;
+    }
+    
+    /* Center all sections below the subtext on mobile */
+    .section {
+        text-align: center;
+    }
+    
+    .section h2, .section h3 {
+        text-align: center;
+    }
+    
+    .section p {
+        text-align: center;
+    }
+    
+    .contact-grid {
+        justify-items: center;
+    }
+    
+    .partners-grid {
+        justify-items: center;
+    }
+    
+    .consulates-table {
+        justify-content: center;
+    }
+    
+    /* Replace gradient with simple semi-opaque black rectangle on mobile */
+    .hero::before {
+        background: rgba(0, 0, 0, 0.6);
+    }
+    
+    /* Community section mobile adjustments */
+    .community-content .hover-text {
+        display: none !important;
+    }
+    
+    .partners-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .partner-item {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 20px 0 !important;
+    }
+    
+    .partner-logo {
+        width: 95% !important;
+        max-width: 200px !important;
+        height: auto !important;
     }
     
     .carousel-slide img {
@@ -761,9 +841,33 @@ a[style*="color: rgb(38, 168, 255)"]:hover {
     .country {
         font-size: 11px;
     }
-    
-    /* Make community icons even bigger on mobile screens */
-    .partner-logo {
-        min-width: 32% !important;
-    }
-} 
+}
+
+/* Override hover text positioning to align with community content right edge */
+.community-content .hover-text {
+    position: absolute !important;
+    right: 0 !important;
+    left: auto !important;
+    width: auto !important;
+    max-width: clamp(250px, 25vw, 400px) !important;
+    text-align: right !important;
+    color: var(--text-color) !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    white-space: normal !important;
+    font-weight: 500 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+/* More extreme scaling for second logo (Mansueto) hover text */
+.community-content .partner-link:nth-child(2) .hover-text {
+    max-width: clamp(200px, 22vw, 380px) !important;
+}
+
+/* More extreme scaling for fourth logo (Blueprint) hover text */
+.community-content .partner-link:nth-child(4) .hover-text {
+    max-width: clamp(180px, 20vw, 370px) !important;
+}
+
+ 
