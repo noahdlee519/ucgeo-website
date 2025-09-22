@@ -167,6 +167,22 @@ function showSlide(n) {
     }
 }
 
+// Keyboard navigation for carousel (Left/Right arrows)
+document.addEventListener('keydown', function(e) {
+    const isCarouselInView = (() => {
+        const el = document.querySelector('.carousel-container');
+        if (!el) return false;
+        const rect = el.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom > 0;
+    })();
+    if (!isCarouselInView) return;
+    if (e.key === 'ArrowLeft') {
+        previousSlide();
+    } else if (e.key === 'ArrowRight') {
+        nextSlide();
+    }
+});
+
 // Touch/Swipe functionality for carousel
 document.addEventListener('DOMContentLoaded', function() {
     const carouselContainer = document.querySelector('.carousel-container');
