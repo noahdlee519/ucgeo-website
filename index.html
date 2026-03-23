@@ -17,8 +17,49 @@
             opacity: 1 !important;
         }
     </style>
+    <style>
+        /* Temporary notice banner for meeting changes */
+        #ucgeo-temp-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            color: #e00000;
+            font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 800; /* Sora bold-ish */
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 18px;
+            z-index: 10000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Prevent the fixed banner from overlapping page content */
+        body {
+            padding-top: 60px;
+        }
+
+        /* Existing logo is fixed; move it below the banner */
+        .logo-container {
+            top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .logo-container {
+                top: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-container {
+                top: 60px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div id="ucgeo-temp-banner" role="status" aria-live="polite">UCGEO is not meeting Monday 3/23</div>
     <div class="logo-container">
         <a href="/" class="logo-link">
             <img src="icons/simpleucgeologo copy 2.png" alt="UCGEO Logo" class="top-logo">
@@ -317,7 +358,7 @@
                         <div class="meeting-info">
                             <h4>Meeting Schedule</h4>
                             <p>Mondays, 7:00-8:00 PM<br>
-                            Cobb Hall 403, University of Chicago<br>
+                            Bartlett Lounge, University of Chicago<br>
                             <a href="https://www.google.com/maps?q=41.79213226805926,-87.59842822974585" target="_blank" style="color: rgb(38, 168, 255);">Google Maps</a></p>
                         </div>
                         
