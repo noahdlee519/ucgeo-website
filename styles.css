@@ -1185,8 +1185,18 @@ a[style*="color: #48cae4"]:hover {
     margin: 12px 0 28px;
 }
 
-.field-gallery + .media-subhead {
+.field-gallery + .media-subhead,
+.photo-credit + .media-subhead {
     margin-top: 72px;
+}
+
+.photo-credit {
+    margin: 22px 0 0;
+    font-family: var(--label-font);
+    font-size: 16px;
+    font-style: italic;
+    text-align: right;
+    color: var(--label-color);
 }
 
 .field-gallery {
