@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UCGEO - University of Chicago Geographic Studies Club</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
-    
+
     <link rel="stylesheet" href="styles.css">
     <style>
         .partner-item:hover .hover-text,
@@ -24,22 +24,44 @@
             <img src="icons/simpleucgeologo copy 2.png" alt="UCGEO Logo" class="top-logo">
         </a>
     </div>
-    
+
     <main>
         <section class="hero">
+            <div class="hero-graticule" aria-hidden="true"></div>
+            <div class="hero-topo" aria-hidden="true"></div>
             <div class="hero-content">
                 <div class="site-title">University of Chicago Geographic Studies Club</div>
                 <nav class="main-navigation">
                     <ul class="nav-menu">
-                        <li><a href="#program" class="nav-link">Program</a></li>
-                        <li><a href="#about" class="nav-link">About</a></li>
-                        <li><a href="#contact" class="nav-link">Contact</a></li>
-                        <li><a href="#community" class="nav-link">Community</a></li>
-                        <li><a href="#media" class="nav-link">Media</a></li>
-                        <li><a href="#join" class="nav-link">Join</a></li>
+                        <li><a href="#program" class="nav-link"><span class="nav-index">01</span>Program</a></li>
+                        <li><a href="#about" class="nav-link"><span class="nav-index">02</span>About</a></li>
+                        <li><a href="#contact" class="nav-link"><span class="nav-index">03</span>Contact</a></li>
+                        <li><a href="#community" class="nav-link"><span class="nav-index">04</span>Community</a></li>
+                        <li><a href="#media" class="nav-link"><span class="nav-index">05</span>Media</a></li>
+                        <li><a href="#join" class="nav-link"><span class="nav-index">06</span>Join</a></li>
                     </ul>
                 </nav>
             </div>
+            <a class="hero-coords" href="https://www.google.com/maps?q=41.7886,-87.5987" target="_blank" aria-label="UChicago campus, 41.7886 degrees north, 87.5987 degrees west">
+                <span class="coords-fix" aria-hidden="true"></span>
+                <span class="coords-value" data-lat="41.7886" data-lon="-87.5987">41.7886° N, 87.5987° W</span>
+                <span class="coords-place">Hyde Park, Chicago</span>
+            </a>
+            <svg class="compass-rose" viewBox="0 0 120 120" aria-hidden="true">
+                <circle cx="60" cy="60" r="56" class="compass-ring"/>
+                <circle cx="60" cy="60" r="47" class="compass-ring compass-ring--inner"/>
+                <g class="compass-ticks">
+                    <path d="M60 4v8M60 108v8M4 60h8M108 60h8"/>
+                    <path d="M99.6 20.4l-4.2 4.2M24.6 95.4l-4.2 4.2M20.4 20.4l4.2 4.2M95.4 95.4l4.2 4.2" class="compass-tick--minor"/>
+                </g>
+                <g class="compass-needle">
+                    <path d="M60 14l7 46h-14z" class="compass-north"/>
+                    <path d="M60 106l7-46h-14z" class="compass-south"/>
+                    <path d="M14 60l46-6v12zM106 60l-46-6v12z" class="compass-east-west"/>
+                    <circle cx="60" cy="60" r="3.5" class="compass-pivot"/>
+                </g>
+                <text x="60" y="-6" class="compass-label">N</text>
+            </svg>
         </section>
 
         <section class="subtext-section">
@@ -50,91 +72,100 @@
             </div>
         </section>
 
-        <section id="program" class="section">
+        <section id="program" class="section section--topo">
             <div class="container">
+                <p class="section-label"><span>01</span>Itinerary</p>
                 <h2>Program</h2>
                 <div class="content-grid">
-                    <div class="content-block">
+                    <div class="content-block" data-grid-ref="A1">
+                        <svg class="block-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                         <h3>Weekly Meetings</h3>
                         <p>Join us for engaging discussions on a breadth of geographic subjects according to weekly themes.</p>
                     </div>
-                    <div class="content-block">
+                    <div class="content-block" data-grid-ref="A2">
+                        <svg class="block-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36z"/></svg>
                         <h3>Geography Games</h3>
                         <p>Participate in team-based geography trivia, Geoguessr challenges, and other interactive activities during our club sessions.</p>
                     </div>
-                    <div class="content-block">
+                    <div class="content-block" data-grid-ref="A3">
+                        <svg class="block-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4z"/><path d="M8 2v16M16 6v16"/></svg>
                         <h3>Field Trips</h3>
                         <p>Visit Chicago-based geographic institutions and exhibits unique to the city, including map collections, museums, and consulates.</p>
                     </div>
-                    <div class="content-block">
+                    <div class="content-block" data-grid-ref="B1">
+                        <svg class="block-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
                         <h3>Guest Lectures</h3>
                         <p>Attend original lectures hosted by guest speakers in relevant geographic and spatial science fields.</p>
                     </div>
-                    <div class="content-block">
+                    <div class="content-block" data-grid-ref="B2">
+                        <svg class="block-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                         <h3>Career & Skill Development</h3>
                         <p>Enhance your professional skills through career talks with UCGEO alumni and professors, plus hands-on tutorials for GIS tools and software used in spatial science careers.</p>
                     </div>
                 </div>
-                
+
                 <div class="program-schedule">
                 </div>
-                
+
                 <div class="consulates-section">
                     <h3>Consulates Visited</h3>
+                    <p class="consulates-intro"><span data-consulate-count>14</span> countries, all without leaving Chicago</p>
+                    <figure class="world-map" id="consulate-map" aria-label="World map highlighting the countries whose Chicago consulates UCGEO has visited"></figure>
+                    <!-- To add a consulate: copy an item below and set data-iso to the country's two-letter ISO code. The map updates automatically. -->
                     <div class="consulates-table">
-                        <a href="https://www.gov.br/mre/pt-br/consulado-chicago" target="_blank" class="consulate-item">
+                        <a href="https://www.gov.br/mre/pt-br/consulado-chicago" target="_blank" class="consulate-item" data-iso="BR">
                             <span class="flag">🇧🇷</span>
                             <span class="country">Brazil</span>
                         </a>
-                        <a href="https://www.international.gc.ca/country-pays/us-eu/chicago.aspx?lang=eng" target="_blank" class="consulate-item">
+                        <a href="https://www.international.gc.ca/country-pays/us-eu/chicago.aspx?lang=eng" target="_blank" class="consulate-item" data-iso="CA">
                             <span class="flag">🇨🇦</span>
                             <span class="country">Canada</span>
                         </a>
-                        <a href="https://www.germany.info/us-en/embassy-consulates/generalkonsulat3/legal-941700" target="_blank" class="consulate-item">
+                        <a href="https://www.germany.info/us-en/embassy-consulates/generalkonsulat3/legal-941700" target="_blank" class="consulate-item" data-iso="DE">
                             <span class="flag">🇩🇪</span>
                             <span class="country">Germany</span>
                         </a>
-                        <a href="https://www.government.is/diplomatic-missions/embassy-of-iceland-in-washington-d.c/embassys-jurisdiction/" target="_blank" class="consulate-item">
+                        <a href="https://www.government.is/diplomatic-missions/embassy-of-iceland-in-washington-d.c/embassys-jurisdiction/" target="_blank" class="consulate-item" data-iso="IS">
                             <span class="flag">🇮🇸</span>
                             <span class="country">Iceland</span>
                         </a>
-                        <a href="https://www.cgichicago.gov.in/" target="_blank" class="consulate-item">
+                        <a href="https://www.cgichicago.gov.in/" target="_blank" class="consulate-item" data-iso="IN">
                             <span class="flag">🇮🇳</span>
                             <span class="country">India</span>
                         </a>
-                        <a href="https://www.chicago.us.emb-japan.go.jp/" target="_blank" class="consulate-item">
+                        <a href="https://www.chicago.us.emb-japan.go.jp/" target="_blank" class="consulate-item" data-iso="JP">
                             <span class="flag">🇯🇵</span>
                             <span class="country">Japan</span>
                         </a>
-                        <a href="https://chicago.mfa.lt/cikaga/en/" target="_blank" class="consulate-item">
+                        <a href="https://chicago.mfa.lt/cikaga/en/" target="_blank" class="consulate-item" data-iso="LT">
                             <span class="flag">🇱🇹</span>
                             <span class="country">Lithuania</span>
                         </a>
-                        <a href="https://www.linkedin.com/company/royal-norwegian-honorary-consulate-il" target="_blank" class="consulate-item">
+                        <a href="https://www.linkedin.com/company/royal-norwegian-honorary-consulate-il" target="_blank" class="consulate-item" data-iso="NO">
                             <span class="flag">🇳🇴</span>
                             <span class="country">Norway</span>
                         </a>
-                        <a href="https://www.facebook.com/HonoraryConsulateofSwedenChicago/" target="_blank" class="consulate-item">
+                        <a href="https://www.facebook.com/HonoraryConsulateofSwedenChicago/" target="_blank" class="consulate-item" data-iso="SE">
                             <span class="flag">🇸🇪</span>
                             <span class="country">Sweden</span>
                         </a>
-                        <a href="https://www.eda.admin.ch/chicago" target="_blank" class="consulate-item">
+                        <a href="https://www.eda.admin.ch/chicago" target="_blank" class="consulate-item" data-iso="CH">
                             <span class="flag">🇨🇭</span>
                             <span class="country">Switzerland</span>
                         </a>
-                        <a href="https://www.netherlandsworldwide.nl/contact/embassies-consulates-general/united-states/consulate-general-chicago" target="_blank" class="consulate-item">
+                        <a href="https://www.netherlandsworldwide.nl/contact/embassies-consulates-general/united-states/consulate-general-chicago" target="_blank" class="consulate-item" data-iso="NL">
                             <span class="flag">🇳🇱</span>
                             <span class="country">Netherlands</span>
                         </a>
-                        <a href="https://consulmex.sre.gob.mx/chicago/index.php/inicio" target="_blank" class="consulate-item">
+                        <a href="https://consulmex.sre.gob.mx/chicago/index.php/inicio" target="_blank" class="consulate-item" data-iso="MX">
                             <span class="flag">🇲🇽</span>
                             <span class="country">Mexico</span>
                         </a>
-                        <a href="https://mzv.gov.cz/chicago/en/index.mobi" target="_blank" class="consulate-item">
+                        <a href="https://mzv.gov.cz/chicago/en/index.mobi" target="_blank" class="consulate-item" data-iso="CZ">
                             <span class="flag">🇨🇿</span>
                             <span class="country">Czech Republic</span>
                         </a>
-                        <a href="https://www.dfat.gov.au/about-us/our-locations/missions/australian-consulate-general-in-chicago-united-states-of-america" target="_blank" class="consulate-item">
+                        <a href="https://www.dfat.gov.au/about-us/our-locations/missions/australian-consulate-general-in-chicago-united-states-of-america" target="_blank" class="consulate-item" data-iso="AU">
                             <span class="flag">🇦🇺</span>
                             <span class="country">Australia</span>
                         </a>
@@ -145,18 +176,41 @@
 
         <section id="about" class="section">
             <div class="container">
+                <p class="section-label"><span>02</span>Origins</p>
                 <h2>About</h2>
                 <div class="about-content">
                     <p>UCGEO was founded in 2022 in response to the lack of geography-related opportunities for students, particularly after the College's cancellation of the Geography major. Since then, we've quickly grown to become a core part of the campus community.</p>
-                    
+
                     <p>Our weekly meetings typically draw 25-35 students who share an interest in spatial sciences and geographic exploration. Whether you're a lifelong geography expert or simply curious about the world around you, UCGEO offers opportunities to learn, connect, and discover the relevance of geography in everyday life.</p>
-                    
+
                     <p>Our capstone events include semi-monthly student delegation trips to Chicagoland consulates, campus-wide geography tournaments, interactive geography-related simulations, and, of course, end-of-quarter festivities!</p>
+
+                    <div class="geo-stats">
+                        <div class="geo-stat">
+                            <span class="stat-value">2022</span>
+                            <span class="stat-label">Founded</span>
+                        </div>
+                        <div class="geo-stat">
+                            <span class="stat-value">25–35</span>
+                            <span class="stat-label">Students weekly</span>
+                        </div>
+                        <div class="geo-stat">
+                            <span class="stat-value" data-consulate-count>14</span>
+                            <span class="stat-label">Consulates visited</span>
+                        </div>
+                    </div>
+
+                    <blockquote class="tobler-quote">
+                        <p>“Everything is related to everything else, but near things are more related than distant things.”</p>
+                        <cite>Waldo Tobler, the First Law of Geography</cite>
+                    </blockquote>
+                </div>
             </div>
         </section>
 
         <section id="contact" class="section">
             <div class="container">
+                <p class="section-label"><span>03</span>Coordinates</p>
                 <h2>Contact</h2>
                 <div class="contact-grid">
                     <div class="contact-block">
@@ -188,12 +242,13 @@
                 </div>
             </div>
         </section>
-        <section id="community" class="section">
+        <section id="community" class="section section--topo">
             <div class="container">
+                <p class="section-label"><span>04</span>Neighbors</p>
                 <h2>Community</h2>
                 <div class="community-content">
                     <p>UCGEO is proud to be part of the broader spatial and geographic community at the University of Chicago. We work closely with academic centers and student organizations across campus. Learn more about them below!</p>
-                    
+
                     <div class="partners-grid">
                         <a href="https://spatial.uchicago.edu/" target="_blank" class="partner-link">
                             <div class="partner-item" style="margin: 50px 30px; position: relative; display: flex; align-items: center; justify-content: flex-start;">
@@ -203,16 +258,16 @@
                                 </div>
                             </div>
                         </a>
-                        
+
                         <a href="https://urban.uchicago.edu/" target="_blank" class="partner-link">
                             <div class="partner-item" style="margin: 50px 30px; position: relative; display: flex; align-items: center; justify-content: flex-start;">
                                 <img src="icons/UChicago_MansuetoInstitute_Color_RGB.png" alt="Mansueto Institute for Urban Innovation" class="partner-logo mansueto-logo">
                                 <div class="hover-text" style="position: absolute; left: 43.5%; width: clamp(35%, 50vw, 60%); color: rgb(38, 168, 255); opacity: 0; transition: opacity 0.3s ease; white-space: wrap; font-weight: 500; text-align: right;">
-                                    UCGEO is generously sponsored by the Mansueto Institute for Urban Innovation 
+                                    UCGEO is generously sponsored by the Mansueto Institute for Urban Innovation
                                 </div>
                             </div>
                         </a>
-                        
+
                         <a href="https://spatial.uchicago.edu/spatial-at-uchicago/student-orgs/tobler-society" target="_blank" class="partner-link">
                             <div class="partner-item" style="margin: 50px 30px; position: relative; display: flex; align-items: center; justify-content: flex-start;">
                                 <img src="icons/tobler.png" alt="Tobler Society" class="partner-logo tobler-logo">
@@ -221,7 +276,7 @@
                                 </div>
                             </div>
                         </a>
-                        
+
                         <a href="https://blueprint.uchicago.edu/organization/ucgeo" target="_blank" class="partner-link">
                             <div class="partner-item" style="margin: 50px 30px; position: relative; display: flex; align-items: center; justify-content: flex-start;">
                                 <img src="icons/cliicon.png" alt="UChicago Blueprint" class="partner-logo blueprint-logo">
@@ -237,11 +292,59 @@
 
         <section id="media" class="section">
             <div class="container">
+                <p class="section-label"><span>05</span>Field Notes</p>
                 <h2>Media</h2>
+
+                <h3 class="media-subhead">Field Photos</h3>
+                <div class="field-gallery">
+                    <figure class="field-photo field-photo--wide">
+                        <a href="pictures/swiss-consulate.jpeg"><img src="pictures/swiss-consulate.jpeg" alt="UCGEO members at the Consulate General of Switzerland in Chicago" loading="lazy"></a>
+                        <figcaption><span class="flag">🇨🇭</span>Swiss Consulate</figcaption>
+                    </figure>
+                    <figure class="field-photo">
+                        <a href="pictures/image3.jpeg"><img src="pictures/image3.jpeg" alt="UCGEO members examining large maps spread across a table" loading="lazy"></a>
+                        <figcaption><span class="flag">🗺️</span>Map collection visit</figcaption>
+                    </figure>
+                    <figure class="field-photo">
+                        <a href="pictures/swiss-consulate-talk.jpeg"><img src="pictures/swiss-consulate-talk.jpeg" alt="A presentation for UCGEO members at the Swiss Consulate" loading="lazy"></a>
+                        <figcaption><span class="flag">🇨🇭</span>Talk at the Swiss Consulate</figcaption>
+                    </figure>
+                    <figure class="field-photo">
+                        <a href="pictures/image2.jpeg"><img src="pictures/image2.jpeg" alt="Students around a long table at a UCGEO weekly meeting" loading="lazy"></a>
+                        <figcaption><span class="flag">📍</span>Weekly meeting</figcaption>
+                    </figure>
+                    <figure class="field-photo field-photo--wide">
+                        <a href="pictures/dutch-consulate.jpeg"><img src="pictures/dutch-consulate.jpeg" alt="UCGEO members at the Consulate General of the Netherlands in Chicago" loading="lazy"></a>
+                        <figcaption><span class="flag">🇳🇱</span>Dutch Consulate</figcaption>
+                    </figure>
+                    <figure class="field-photo">
+                        <a href="pictures/image4.jpeg"><img src="pictures/image4.jpeg" alt="UCGEO delegation with consulate hosts" loading="lazy"></a>
+                        <figcaption><span class="flag">🌐</span>Consulate delegation</figcaption>
+                    </figure>
+                    <figure class="field-photo field-photo--wide">
+                        <a href="pictures/image1.jpg"><img src="pictures/image1.jpg" alt="UCGEO delegation in front of Canadian provincial flags" loading="lazy"></a>
+                        <figcaption><span class="flag">🇨🇦</span>Canadian Consulate</figcaption>
+                    </figure>
+                    <figure class="field-photo field-photo--wide">
+                        <a href="pictures/hero-lecture.jpeg"><img src="pictures/hero-lecture.jpeg" alt="A UCGEO lecture in a full classroom" loading="lazy"></a>
+                        <figcaption><span class="flag">📍</span>Guest lecture</figcaption>
+                    </figure>
+                </div>
+
+                <h3 class="media-subhead">Event Posters</h3>
                 <div class="carousel-container">
                     <div class="carousel">
                         <div class="carousel-slide">
-                            <img src="media/brazilconsulatebrazil.jpeg" alt="Brazil Consulate Event">
+                            <img src="media/careers-geography-w26.jpeg" alt="Careers in Geography and GIS poster">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="media/mexico-consulate.jpeg" alt="Visit the Mexican Consulate poster" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="media/swiss-consulate-reception.jpeg" alt="Swiss Consulate reception poster" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="media/brazilconsulatebrazil.jpeg" alt="Brazil Consulate Event" loading="lazy">
                         </div>
                         <div class="carousel-slide">
                             <img src="media/competition2025.png" alt="Competition 2025" loading="lazy">
@@ -259,41 +362,13 @@
                             <img src="media/versaillessimulation.png" alt="Versailles Simulation" loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="pictures/image1.jpg" alt="UCGEO Activity 1" loading="lazy">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="pictures/image2.jpeg" alt="UCGEO Activity 2" loading="lazy">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="pictures/image3.jpeg" alt="UCGEO Activity 3" loading="lazy">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="pictures/image4.jpeg" alt="UCGEO Activity 4" loading="lazy">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="pictures/image5.JPG" alt="UCGEO Activity 5" loading="lazy">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="pictures/image6.jpeg" alt="UCGEO Activity 6" loading="lazy">
+                            <img src="pictures/image6.jpeg" alt="UCGEO club flyer" loading="lazy">
                         </div>
                     </div>
                     <div class="carousel-controls">
-                        <button class="carousel-btn prev-btn" onclick="previousSlide()">‹</button>
-                        <div class="carousel-dots">
-                            <span class="dot active" onclick="currentSlide(1)"></span>
-                            <span class="dot" onclick="currentSlide(2)"></span>
-                            <span class="dot" onclick="currentSlide(3)"></span>
-                            <span class="dot" onclick="currentSlide(4)"></span>
-                            <span class="dot" onclick="currentSlide(5)"></span>
-                            <span class="dot" onclick="currentSlide(6)"></span>
-                            <span class="dot" onclick="currentSlide(7)"></span>
-                            <span class="dot" onclick="currentSlide(8)"></span>
-                            <span class="dot" onclick="currentSlide(9)"></span>
-                            <span class="dot" onclick="currentSlide(10)"></span>
-                            <span class="dot" onclick="currentSlide(11)"></span>
-                            <!-- <span class="dot" onclick="currentSlide(12)"></span> -->
-                        </div>
-                        <button class="carousel-btn next-btn" onclick="nextSlide()">›</button>
+                        <button class="carousel-btn prev-btn" onclick="previousSlide()" aria-label="Previous poster">‹</button>
+                        <div class="carousel-dots"></div>
+                        <button class="carousel-btn next-btn" onclick="nextSlide()" aria-label="Next poster">›</button>
                     </div>
                 </div>
             </div>
@@ -301,23 +376,24 @@
 
         <section id="join" class="section">
             <div class="container">
+                <p class="section-label"><span>06</span>Expedition</p>
                 <h2>Join</h2>
                 <div class="join-content">
                     <p>UCGEO welcomes all University of Chicago undergraduates interested in geography and spatial sciences. No prior experience with geography or GIS is required—just bring your curiosity!</p>
-                    
+
                     <div class="join-info">
-                        
+
                         <p>To join, just show up to one of our weekly meetings! Also be sure to join our mailing list to stay updated on meeting themes and special events.</p>
-                        
+
                         <div class="meeting-info">
                             <h4>Meeting Schedule</h4>
                             <p>TBD for AY 2026-7<br>
                             Location TBD</p>
                             <!--<a href="https://www.google.com/maps?q=41.79213226805926,-87.59842822974585" target="_blank" style="color: rgb(38, 168, 255);">Google Maps</a>-->
                         </div>
-                        
+
                         <a href="https://lists.uchicago.edu/web/info/ucgeo" target="_blank" class="join-button" style="margin-right: 10px;">Join Mailing List</a>
-                        
+
                         <a href="mailto:bennettcullison@uchicago.edu,julianhuang@uchicago.edu" class="join-button">Email Us</a>
                     </div>
                 </div>
@@ -327,10 +403,22 @@
 
     <footer class="footer">
         <div class="container">
+            <div class="scale-bar" aria-hidden="true">
+                <div class="scale-bar-segments"><span></span><span></span><span></span><span></span></div>
+                <div class="scale-bar-labels"><span>0</span><span>1</span><span>2 mi</span></div>
+            </div>
+            <p class="footer-coords"><a href="https://www.google.com/maps?q=41.7886,-87.5987" target="_blank">41°47′19″ N · 87°35′55″ W</a></p>
             <p>&copy; 2026 | University of Chicago Geographic Studies Club</p>
         </div>
     </footer>
 
+    <dialog class="lightbox" aria-label="Photo viewer">
+        <button class="lightbox-close" aria-label="Close">×</button>
+        <img src="" alt="">
+        <p class="lightbox-caption"></p>
+    </dialog>
+
+    <script src="world-map-data.js"></script>
     <script src="script.js"></script>
 </body>
-</html> 
+</html>

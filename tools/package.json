@@ -1,0 +1,17 @@
+{
+  "name": "ucgeo-geo-assets",
+  "private": true,
+  "type": "module",
+  "description": "Generates world-map-data.js and the topographic contour textures. Not needed to run the site.",
+  "scripts": {
+    "build": "node build-geo-assets.mjs"
+  },
+  "dependencies": {
+    "d3-contour": "^4.0.2",
+    "d3-geo": "^3.1.1",
+    "d3-shape": "^3.2.0",
+    "i18n-iso-countries": "^7.14.0",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  }
+}

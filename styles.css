@@ -1,5 +1,5 @@
-/* Import Sora font */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap');
+/* Import Sora font, plus IBM Plex Mono for map labels and coordinates */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 /* CSS Reset */
 * {
@@ -18,6 +18,12 @@
     --medium-gray: #26a8ff;
     --section-spacing: 60px;
     --container-max-width: 1200px;
+    /* Cartographic palette: land green and water blue above, plus ocean, map paper and the logo's gold */
+    --mono-font: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --ocean: #0b2540;
+    --ocean-light: #123a5e;
+    --paper: #f6f3ea;
+    --gold: #f5b700;
 }
 
 /* Base Typography */
@@ -147,6 +153,19 @@ p {
     text-decoration-color: #70e000;
 }
 
+/* Small map-sheet numbers beside each nav item */
+.nav-index {
+    display: inline-block;
+    vertical-align: super;
+    margin-right: 12px;
+    font-family: var(--mono-font);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.6);
+}
+
 /* Logo in top right */
 .logo-container {
     position: fixed;
@@ -173,7 +192,8 @@ p {
 /* Hero Section */
 .hero {
     min-height: 100vh;
-    background-image: url('pictures/image5.JPG');
+    background-image: url('pictures/hero-lecture.jpeg');
+    background-color: var(--ocean);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -190,9 +210,139 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(255, 174, 0, 0.05));
+    background: linear-gradient(to right, rgba(6, 22, 40, 0.86), rgba(6, 22, 40, 0.4) 60%, rgba(6, 22, 40, 0.2));
     z-index: 1;
     pointer-events: none;
+}
+
+/* Latitude/longitude grid over the hero photo */
+.hero-graticule {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 120px 120px;
+}
+
+/* Topographic contour lines over the hero photo */
+.hero-topo {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: url('icons/topo-light.svg') center / cover no-repeat;
+    opacity: 0.55;
+}
+
+/* Live coordinates readout, bottom left of the hero */
+.hero-coords {
+    position: absolute;
+    left: 60px;
+    bottom: 36px;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    padding: 10px 16px;
+    font-family: var(--mono-font);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    text-decoration: none;
+    background: rgba(11, 37, 64, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    transition: border-color 0.3s ease;
+}
+
+.hero-coords:hover {
+    border-color: var(--primary-color);
+}
+
+.coords-fix {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    animation: gps-ping 2s ease-out infinite;
+}
+
+.coords-value {
+    font-variant-numeric: tabular-nums;
+}
+
+.coords-place {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+@keyframes gps-ping {
+    0% { box-shadow: 0 0 0 0 rgba(112, 224, 0, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(112, 224, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(112, 224, 0, 0); }
+}
+
+/* Compass rose, bottom right of the hero; the needle swings as you scroll */
+.compass-rose {
+    position: absolute;
+    right: 48px;
+    bottom: 36px;
+    z-index: 2;
+    width: 120px;
+    height: 120px;
+    overflow: visible;
+}
+
+.compass-ring {
+    fill: rgba(11, 37, 64, 0.45);
+    stroke: rgba(255, 255, 255, 0.6);
+    stroke-width: 1;
+}
+
+.compass-ring--inner {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.4);
+    stroke-dasharray: 2 4;
+}
+
+.compass-ticks path {
+    stroke: rgba(255, 255, 255, 0.85);
+    stroke-width: 1.5;
+}
+
+.compass-ticks .compass-tick--minor {
+    stroke: rgba(255, 255, 255, 0.5);
+    stroke-width: 1;
+}
+
+.compass-needle {
+    transform-origin: 60px 60px;
+    transition: transform 0.4s ease-out;
+}
+
+.compass-north { fill: var(--primary-color); }
+.compass-south { fill: rgba(255, 255, 255, 0.85); }
+.compass-east-west { fill: rgba(255, 255, 255, 0.3); }
+
+.compass-pivot {
+    fill: var(--ocean);
+    stroke: #ffffff;
+    stroke-width: 1.5;
+}
+
+.compass-label {
+    fill: #ffffff;
+    font-family: var(--mono-font);
+    font-size: 12px;
+    font-weight: 600;
+    text-anchor: middle;
 }
 
 .hero-content {
@@ -260,7 +410,8 @@ p {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    background-color: #ffffff;
+    background-color: var(--paper);
+    border: 1px solid rgba(38, 168, 255, 0.2);
     overflow: hidden;
 }
 
@@ -274,7 +425,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ffffff;
+    padding-top: 24px;
 }
 
 .carousel-slide img {
@@ -290,7 +441,6 @@ p {
     justify-content: center;
     gap: 15px;
     padding: 20px;
-    background-color: var(--background-color);
 }
 
 .carousel-btn {
@@ -351,9 +501,54 @@ p {
 /* Content Grids */
 .content-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 60px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 28px;
     margin-top: 20px;
+}
+
+.content-grid .content-block {
+    grid-column: span 2;
+}
+
+.content-grid .content-block:nth-child(n+4) {
+    grid-column: span 3;
+}
+
+/* Program items as atlas cards, with a grid reference in the corner */
+.content-block {
+    position: relative;
+    padding: 28px 28px 8px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(38, 168, 255, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.content-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(11, 37, 64, 0.08);
+}
+
+.content-block::after {
+    content: attr(data-grid-ref);
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-family: var(--mono-font);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(38, 168, 255, 0.6);
+}
+
+.block-icon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 14px;
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .content-block h3 {
@@ -367,39 +562,58 @@ p {
 
 /* Consulates Section */
 .consulates-section {
-    margin-top: 60px;
+    margin-top: 80px;
     text-align: center;
 }
 
 .consulates-section h3 {
-    margin-bottom: 30px;
+    margin-bottom: 8px;
     font-weight: 700;
+}
+
+.consulates-intro {
+    margin-bottom: 24px;
+    font-family: var(--mono-font);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .consulates-table {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    max-width: 600px;
+    gap: 14px;
+    max-width: 940px;
     margin: 0 auto;
 }
 
+/* Consulates as passport stamps */
 .consulate-item {
     flex: 0 0 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px;
-    border-radius: 0px;
-    background-color: var(--light-gray);
-    transition: transform 0.2s ease;
+    border: 2px dashed rgba(38, 168, 255, 0.45);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.75);
+    transform: rotate(var(--tilt, 0deg));
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
     text-decoration: none;
     color: inherit;
 }
 
-.consulate-item:hover {
-    transform: translateY(-2px);
+.consulate-item:nth-child(3n+1) { --tilt: -2deg; }
+.consulate-item:nth-child(3n+2) { --tilt: 1.5deg; }
+.consulate-item:nth-child(4n) { --tilt: -1deg; }
+
+.consulate-item:hover,
+.consulate-item.is-highlighted {
+    transform: translateY(-3px) scale(1.04);
+    border-style: solid;
+    border-color: var(--primary-color);
+    background-color: #ffffff;
 }
 
 .flag {
@@ -408,9 +622,174 @@ p {
 }
 
 .country {
-    font-size: 14px;
+    font-family: var(--mono-font);
+    font-size: 13px;
     font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     color: var(--text-color);
+}
+
+/* World map of visited consulates (drawn by script.js from world-map-data.js) */
+.world-map {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto 36px;
+    padding: 16px;
+    background: var(--ocean);
+    border: 1px solid var(--ocean-light);
+    box-shadow: 0 18px 40px rgba(11, 37, 64, 0.18);
+}
+
+.world-map svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.map-sphere { fill: var(--ocean-light); }
+
+.map-graticule {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-width: 0.6;
+}
+
+.map-land {
+    fill: #2b5a83;
+    stroke: var(--ocean-light);
+    stroke-width: 0.5;
+}
+
+.map-land.visited {
+    fill: var(--primary-color);
+    cursor: pointer;
+    transition: fill 0.2s ease;
+}
+
+.map-land.visited:hover,
+.map-land.visited.is-highlighted {
+    fill: #c2ff7a;
+}
+
+.map-route {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.3;
+    stroke-linecap: round;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, stroke-width 0.2s ease;
+}
+
+.map-route.is-highlighted {
+    stroke-width: 2.6;
+    opacity: 1;
+}
+
+.map-dest {
+    fill: var(--gold);
+    stroke: var(--ocean);
+    stroke-width: 1;
+}
+
+.map-home {
+    fill: var(--gold);
+    stroke: #ffffff;
+    stroke-width: 1.5;
+}
+
+.map-home-pulse {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.5;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: home-pulse 2.4s ease-out infinite;
+}
+
+.map-home-label {
+    fill: #ffffff;
+    font-family: var(--mono-font);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    paint-order: stroke;
+    stroke: var(--ocean);
+    stroke-width: 3px;
+}
+
+@keyframes home-pulse {
+    0% { transform: scale(1); opacity: 0.9; }
+    100% { transform: scale(3.2); opacity: 0; }
+}
+
+/* Routes draw themselves in when the map scrolls into view */
+.world-map.is-animated .map-route {
+    stroke-dasharray: var(--route-length);
+    stroke-dashoffset: var(--route-length);
+}
+
+.world-map.is-animated.is-drawn .map-route {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1.4s ease-out var(--route-delay, 0s), opacity 0.2s ease, stroke-width 0.2s ease;
+}
+
+.map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 24px;
+    margin-top: 12px;
+    font-family: var(--mono-font);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.map-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.map-legend i {
+    display: inline-block;
+    width: 14px;
+    height: 10px;
+}
+
+.map-legend .legend-visited { background: var(--primary-color); }
+.map-legend .legend-route { height: 2px; background: var(--gold); }
+
+.map-legend .legend-home {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 2px #ffffff inset;
+}
+
+.map-tooltip {
+    position: absolute;
+    z-index: 3;
+    padding: 6px 10px;
+    font-family: var(--mono-font);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--ocean);
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+    transform: translate(-50%, calc(-100% - 12px));
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.map-tooltip.is-visible {
+    opacity: 1;
 }
 
 /* About Section */
@@ -558,7 +937,8 @@ p {
 .join-info {
     margin-top: 60px;
     padding: 40px;
-    background-color: var(--light-gray);
+    background: linear-gradient(rgba(246, 243, 234, 0.6), rgba(246, 243, 234, 0.6)), url('icons/topo-dark.svg') center / cover no-repeat, var(--paper);
+    border-left: 4px solid var(--primary-color);
 }
 
 .meeting-info {
@@ -594,16 +974,327 @@ a[style*="color: #48cae4"]:hover {
 
 /* Footer */
 .footer {
-    padding: 40px 0;
+    padding: 48px 0 40px;
     margin-top: var(--section-spacing);
+    background: url('icons/topo-light.svg') center / cover no-repeat, var(--ocean);
 }
 
 .footer p {
     font-size: 14px;
     font-weight: 400;
-    color: var(--medium-gray);
+    color: rgba(255, 255, 255, 0.75);
     text-align: center;
     margin: 0;
+}
+
+.footer .footer-coords {
+    margin-bottom: 10px;
+}
+
+.footer-coords a {
+    font-family: var(--mono-font);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-coords a:hover {
+    color: var(--primary-color);
+}
+
+/* Map scale bar */
+.scale-bar {
+    width: 180px;
+    margin: 0 auto 20px;
+}
+
+.scale-bar-segments {
+    display: flex;
+    height: 8px;
+    border: 1.5px solid #ffffff;
+}
+
+.scale-bar-segments span {
+    flex: 1;
+}
+
+.scale-bar-segments span:nth-child(odd) {
+    background: #ffffff;
+}
+
+.scale-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-family: var(--mono-font);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Section eyebrow, styled like a map label: ◯ 01 / ITINERARY - - - - */
+.section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+    font-family: var(--mono-font);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+.section-label::before {
+    content: '';
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+}
+
+.section-label::after {
+    content: '';
+    flex: 0 1 220px;
+    border-top: 2px dashed rgba(38, 168, 255, 0.35);
+}
+
+.section-label span::after {
+    content: ' /';
+    opacity: 0.5;
+}
+
+/* Map-paper sections with topographic contours */
+.section--topo {
+    position: relative;
+    isolation: isolate;
+    background-color: var(--paper);
+}
+
+.section--topo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url('icons/topo-dark.svg') center / cover no-repeat;
+    opacity: 0.75;
+    pointer-events: none;
+}
+
+.section--topo .partner-logo {
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid rgba(38, 168, 255, 0.2);
+    box-shadow: 0 6px 16px rgba(11, 37, 64, 0.06);
+}
+
+/* Map pins on contact and meeting headings */
+.contact-block h3,
+.meeting-info h4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-block h3::before,
+.meeting-info h4::before {
+    content: '';
+    flex: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50% 50% 50% 0;
+    background: radial-gradient(circle, #ffffff 0 3px, var(--primary-color) 3.5px);
+    transform: rotate(-45deg);
+}
+
+/* About: quick stats and Tobler's First Law */
+.geo-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 36px;
+    border-top: 2px solid rgba(38, 168, 255, 0.25);
+    border-bottom: 2px solid rgba(38, 168, 255, 0.25);
+}
+
+.geo-stat {
+    padding: 20px 12px;
+    text-align: center;
+    border-right: 1px dashed rgba(38, 168, 255, 0.35);
+}
+
+.geo-stat:last-child {
+    border-right: none;
+}
+
+.stat-value {
+    display: block;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    font-family: var(--mono-font);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+.tobler-quote {
+    margin-top: 40px;
+    padding: 28px 32px;
+    border-left: 4px solid var(--primary-color);
+    background: linear-gradient(rgba(246, 243, 234, 0.6), rgba(246, 243, 234, 0.6)), url('icons/topo-dark.svg') center / cover no-repeat, var(--paper);
+}
+
+.tobler-quote p {
+    margin-bottom: 12px;
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--ocean);
+}
+
+.tobler-quote cite {
+    font-family: var(--mono-font);
+    font-size: 12px;
+    font-style: normal;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+/* Media: field photo gallery, pinned like polaroids */
+.media-subhead {
+    margin: 12px 0 28px;
+}
+
+.field-gallery + .media-subhead {
+    margin-top: 72px;
+}
+
+.field-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: dense;
+    gap: 26px 22px;
+}
+
+.field-photo {
+    position: relative;
+    margin: 0;
+    padding: 10px 10px 0;
+    background: #ffffff;
+    border: 1px solid #ececec;
+    box-shadow: 0 6px 18px rgba(11, 37, 64, 0.12);
+    transform: rotate(var(--tilt, 0deg));
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.field-photo:nth-child(odd) { --tilt: -1.2deg; }
+.field-photo:nth-child(3n) { --tilt: 1deg; }
+.field-photo:nth-child(4n) { --tilt: 0.6deg; }
+
+.field-photo:hover {
+    z-index: 1;
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(11, 37, 64, 0.2);
+}
+
+/* Strip of tape holding each photo */
+.field-photo::before {
+    content: '';
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    width: 70px;
+    height: 20px;
+    background: rgba(245, 183, 0, 0.35);
+    transform: translateX(-50%) rotate(-3deg);
+}
+
+.field-photo--wide {
+    grid-column: span 2;
+}
+
+.field-photo a {
+    display: block;
+}
+
+.field-photo img {
+    display: block;
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    object-position: 50% 35%;
+}
+
+.field-photo figcaption {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 2px 12px;
+    font-family: var(--mono-font);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ocean);
+}
+
+.field-photo .flag {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Photo lightbox */
+.lightbox {
+    margin: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    max-width: 92vw;
+    max-height: 94vh;
+    overflow: visible;
+}
+
+.lightbox::backdrop {
+    background: rgba(6, 22, 40, 0.88);
+}
+
+.lightbox img {
+    display: block;
+    max-width: 92vw;
+    max-height: 84vh;
+    border: 8px solid #ffffff;
+}
+
+.lightbox-caption {
+    margin: 12px 0 0;
+    font-family: var(--mono-font);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #ffffff;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--ocean);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
 }
 
 /* Responsive Design */
@@ -775,9 +1466,9 @@ a[style*="color: #48cae4"]:hover {
         justify-content: center;
     }
     
-    /* Replace gradient with simple semi-opaque black rectangle on mobile */
+    /* Replace gradient with simple semi-opaque ocean rectangle on mobile */
     .hero::before {
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(6, 22, 40, 0.68);
     }
     
     /* Community section mobile adjustments */
@@ -870,4 +1561,140 @@ a[style*="color: #48cae4"]:hover {
     max-width: clamp(180px, 20vw, 370px) !important;
 }
 
- 
+/* Geo theme: tablet and mobile */
+@media (max-width: 900px) {
+    .content-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content-grid .content-block,
+    .content-grid .content-block:nth-child(n+4) {
+        grid-column: auto;
+    }
+
+    .content-grid .content-block:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+
+    .field-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-bottom: 120px;
+    }
+
+    .hero-coords {
+        left: 20px;
+        bottom: 20px;
+        max-width: calc(100% - 130px);
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .coords-place {
+        font-size: 10px;
+    }
+
+    .compass-rose {
+        right: 20px;
+        bottom: 20px;
+        width: 80px;
+        height: 80px;
+    }
+
+    .nav-index {
+        font-size: 12px;
+        margin-right: 8px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .world-map {
+        padding: 8px;
+    }
+
+    .field-photo img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-index {
+        display: none;
+    }
+
+    .join-info {
+        border-left: none;
+        border-top: 4px solid var(--primary-color);
+    }
+
+    .section-label,
+    .contact-block h3,
+    .meeting-info h4 {
+        justify-content: center;
+    }
+
+    .section-label::after {
+        display: none;
+    }
+
+    .compass-rose {
+        width: 64px;
+        height: 64px;
+    }
+
+    .hero-coords {
+        max-width: calc(100% - 104px);
+    }
+
+    .content-block {
+        padding: 24px 20px 4px;
+    }
+
+    .geo-stat {
+        padding: 16px 6px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+
+    .tobler-quote {
+        padding: 22px 20px;
+        border-left: none;
+        border-top: 4px solid var(--primary-color);
+    }
+
+    .field-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .field-photo--wide {
+        grid-column: auto;
+    }
+
+    .field-photo figcaption {
+        justify-content: center;
+    }
+
+    .map-legend {
+        font-size: 10px;
+        gap: 6px 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .coords-fix,
+    .map-home-pulse {
+        animation: none;
+    }
+
+    .compass-needle {
+        transition: none;
+    }
+}
