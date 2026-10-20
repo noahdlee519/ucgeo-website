@@ -111,6 +111,15 @@ p {
 
 /* Hover effect now handled in JavaScript */
 
+/* One-line club intro under the title; lines up with the title's offset */
+.hero-tagline {
+    max-width: 560px;
+    margin: -18px 0 34px -20px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.88);
+}
+
 .main-navigation {
     margin-bottom: 80px;
     align-self: flex-start;
@@ -1356,6 +1365,12 @@ a[style*="color: #48cae4"]:hover {
         max-width: 84%;
         margin-left: -10px;
     }
+
+    .hero-tagline {
+        margin: -28px 0 36px -10px;
+        max-width: 84%;
+        font-size: 16px;
+    }
     
     .main-navigation {
         margin-bottom: 60px;
@@ -1446,6 +1461,12 @@ a[style*="color: #48cae4"]:hover {
         margin-bottom: 30px;
         max-width: 75%;
         margin-left: 0;
+    }
+
+    .hero-tagline {
+        margin: -20px 0 28px 0;
+        max-width: 80%;
+        font-size: 14px;
     }
     
     .main-navigation {
