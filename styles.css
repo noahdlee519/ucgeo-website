@@ -807,11 +807,8 @@ p {
     transform: scale(1.15);
 }
 
-.csds-logo {
-    width: clamp(22%, 25%, 28%);
-}
 
-.mansueto-logo, .blueprint-logo {
+.mansueto-logo, .blueprint-logo, .sdsl-logo {
     width: clamp(30%, 38%, 45%);
 }
 
