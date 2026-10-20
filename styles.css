@@ -1,5 +1,5 @@
-/* Import Sora font, plus IBM Plex Mono for map labels and coordinates */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+/* Import Sora font, plus EB Garamond for map-style labels, captions and coordinates */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
 /* CSS Reset */
 * {
@@ -19,7 +19,8 @@
     --section-spacing: 60px;
     --container-max-width: 1200px;
     /* Cartographic palette: land green and water blue above, plus ocean, map paper and the logo's gold */
-    --mono-font: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --label-font: 'EB Garamond', Garamond, Georgia, serif;
+    --label-color: #1c86d1; /* a shade darker than the body blue so thin italics stay readable */
     --ocean: #0b2540;
     --ocean-light: #123a5e;
     --paper: #f6f3ea;
@@ -162,18 +163,6 @@ p {
     text-decoration-color: #70e000;
 }
 
-/* Small map-sheet numbers beside each nav item */
-.nav-index {
-    display: inline-block;
-    vertical-align: super;
-    margin-right: 12px;
-    font-family: var(--mono-font);
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    line-height: 1;
-    color: rgba(255, 255, 255, 0.6);
-}
 
 /* Logo in top right */
 .logo-container {
@@ -257,9 +246,8 @@ p {
     align-items: center;
     gap: 6px 14px;
     padding: 10px 16px;
-    font-family: var(--mono-font);
-    font-size: 14px;
-    letter-spacing: 0.04em;
+    font-family: var(--label-font);
+    font-size: 17px;
     color: #ffffff;
     text-decoration: none;
     background: rgba(11, 37, 64, 0.6);
@@ -282,14 +270,12 @@ p {
 }
 
 .coords-value {
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric: lining-nums tabular-nums;
 }
 
 .coords-place {
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.65);
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 @keyframes gps-ping {
@@ -348,8 +334,8 @@ p {
 
 .compass-label {
     fill: #ffffff;
-    font-family: var(--mono-font);
-    font-size: 12px;
+    font-family: var(--label-font);
+    font-size: 15px;
     font-weight: 600;
     text-anchor: middle;
 }
@@ -542,10 +528,10 @@ p {
     position: absolute;
     top: 12px;
     right: 14px;
-    font-family: var(--mono-font);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: rgba(38, 168, 255, 0.6);
+    font-family: var(--label-font);
+    font-size: 15px;
+    font-style: italic;
+    color: rgba(38, 168, 255, 0.7);
 }
 
 .block-icon {
@@ -582,10 +568,11 @@ p {
 
 .consulates-intro {
     margin-bottom: 24px;
-    font-family: var(--mono-font);
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-family: var(--label-font);
+    font-size: 19px;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--label-color);
 }
 
 .consulates-table {
@@ -631,10 +618,10 @@ p {
 }
 
 .country {
-    font-family: var(--mono-font);
-    font-size: 13px;
+    font-family: var(--label-font);
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-color);
 }
@@ -718,10 +705,10 @@ p {
 
 .map-home-label {
     fill: #ffffff;
-    font-family: var(--mono-font);
-    font-size: 13px;
+    font-family: var(--label-font);
+    font-size: 15px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.14em;
     paint-order: stroke;
     stroke: var(--ocean);
     stroke-width: 3px;
@@ -749,11 +736,10 @@ p {
     justify-content: center;
     gap: 8px 24px;
     margin-top: 12px;
-    font-family: var(--mono-font);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.75);
+    font-family: var(--label-font);
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .map-legend span {
@@ -783,10 +769,8 @@ p {
     position: absolute;
     z-index: 3;
     padding: 6px 10px;
-    font-family: var(--mono-font);
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-family: var(--label-font);
+    font-size: 16px;
     white-space: nowrap;
     color: var(--ocean);
     background: #ffffff;
@@ -1027,9 +1011,10 @@ a[style*="color: #48cae4"]:hover {
 }
 
 .footer-coords a {
-    font-family: var(--mono-font);
-    font-size: 13px;
-    letter-spacing: 0.12em;
+    font-family: var(--label-font);
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    font-variant-numeric: lining-nums;
     color: #ffffff;
     text-decoration: none;
 }
@@ -1062,23 +1047,23 @@ a[style*="color: #48cae4"]:hover {
     display: flex;
     justify-content: space-between;
     margin-top: 6px;
-    font-family: var(--mono-font);
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.75);
+    font-family: var(--label-font);
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
 }
 
-/* Section eyebrow, styled like a map label: ◯ 01 / ITINERARY - - - - */
+/* Section eyebrow, styled like an italic map label with a dashed route line */
 .section-label {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 6px;
-    font-family: var(--mono-font);
-    font-size: 13px;
+    margin-bottom: 4px;
+    font-family: var(--label-font);
+    font-size: 20px;
+    font-style: italic;
     font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--text-color);
+    color: var(--label-color);
 }
 
 .section-label::before {
@@ -1096,10 +1081,6 @@ a[style*="color: #48cae4"]:hover {
     border-top: 2px dashed rgba(38, 168, 255, 0.35);
 }
 
-.section-label span::after {
-    content: ' /';
-    opacity: 0.5;
-}
 
 /* Map-paper sections with topographic contours */
 .section--topo {
@@ -1172,11 +1153,11 @@ a[style*="color: #48cae4"]:hover {
 }
 
 .stat-label {
-    font-family: var(--mono-font);
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-color);
+    font-family: var(--label-font);
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--label-color);
 }
 
 .tobler-quote {
@@ -1195,12 +1176,11 @@ a[style*="color: #48cae4"]:hover {
 }
 
 .tobler-quote cite {
-    font-family: var(--mono-font);
-    font-size: 12px;
-    font-style: normal;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-color);
+    font-family: var(--label-font);
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--label-color);
 }
 
 /* Media: field photo gallery, pinned like polaroids */
@@ -1273,10 +1253,11 @@ a[style*="color: #48cae4"]:hover {
     align-items: center;
     gap: 8px;
     padding: 10px 2px 12px;
-    font-family: var(--mono-font);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: var(--label-font);
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.25;
     color: var(--ocean);
 }
 
@@ -1309,10 +1290,9 @@ a[style*="color: #48cae4"]:hover {
 
 .lightbox-caption {
     margin: 12px 0 0;
-    font-family: var(--mono-font);
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-family: var(--label-font);
+    font-size: 19px;
+    font-style: italic;
     text-align: center;
     color: #ffffff;
 }
@@ -1637,12 +1617,12 @@ a[style*="color: #48cae4"]:hover {
         left: 20px;
         bottom: 20px;
         max-width: calc(100% - 130px);
-        font-size: 12px;
+        font-size: 15px;
         padding: 8px 12px;
     }
 
     .coords-place {
-        font-size: 10px;
+        font-size: 14px;
     }
 
     .compass-rose {
@@ -1650,11 +1630,6 @@ a[style*="color: #48cae4"]:hover {
         bottom: 20px;
         width: 80px;
         height: 80px;
-    }
-
-    .nav-index {
-        font-size: 12px;
-        margin-right: 8px;
     }
 
     .content-grid {
@@ -1671,10 +1646,6 @@ a[style*="color: #48cae4"]:hover {
 }
 
 @media (max-width: 480px) {
-    .nav-index {
-        display: none;
-    }
-
     .join-info {
         border-left: none;
         border-top: 4px solid var(--primary-color);
@@ -1719,7 +1690,7 @@ a[style*="color: #48cae4"]:hover {
     }
 
     .stat-label {
-        font-size: 10px;
+        font-size: 14px;
     }
 
     .tobler-quote {
@@ -1741,7 +1712,7 @@ a[style*="color: #48cae4"]:hover {
     }
 
     .map-legend {
-        font-size: 10px;
+        font-size: 14px;
         gap: 6px 14px;
     }
 }
