@@ -945,6 +945,32 @@ p {
     margin: 30px 0;
 }
 
+.meeting-perks p {
+    margin-bottom: 10px;
+}
+
+.meeting-perks ul {
+    list-style: none;
+}
+
+/* Small waypoint markers as bullets */
+.meeting-perks li {
+    position: relative;
+    padding: 4px 0 4px 24px;
+    line-height: 1.5;
+}
+
+.meeting-perks li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: calc(4px + 0.75em - 6px);
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+}
+
 .join-button {
     display: inline-block;
     background-color: var(--text-color);
@@ -1631,6 +1657,17 @@ a[style*="color: #48cae4"]:hover {
     .join-info {
         border-left: none;
         border-top: 4px solid var(--primary-color);
+    }
+
+    .meeting-perks li {
+        padding-left: 0;
+    }
+
+    .meeting-perks li::before {
+        position: static;
+        display: inline-block;
+        margin-right: 8px;
+        vertical-align: 1px;
     }
 
     .section-label,
