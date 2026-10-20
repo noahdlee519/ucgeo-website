@@ -472,12 +472,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const image = lightbox.querySelector('img');
     const caption = lightbox.querySelector('.lightbox-caption');
+    let enlarge = false;
+
+    // Photos whose link has data-enlarge are scaled up to fill the viewer like the larger photos
+    function sizeImage() {
+        image.style.width = '';
+        if (!enlarge || !image.naturalWidth) return;
+        const frame = 16; // the 8px white border on each side
+        const scale = Math.min(
+            (window.innerWidth * 0.92 - frame) / image.naturalWidth,
+            (window.innerHeight * 0.84 - frame) / image.naturalHeight
+        );
+        if (scale > 1) image.style.width = `${Math.floor(image.naturalWidth * scale) + frame}px`;
+    }
+    image.addEventListener('load', sizeImage);
 
     document.querySelectorAll('.field-photo a').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const figcaption = this.closest('.field-photo').querySelector('figcaption');
+            enlarge = this.hasAttribute('data-enlarge');
+            image.style.width = '';
             image.src = this.href;
+            if (image.complete) sizeImage();
             image.alt = this.querySelector('img').alt;
             caption.textContent = Array.from(figcaption.childNodes)
                 .map(node => node.textContent.trim())
